@@ -1,20 +1,19 @@
-cal = require('./Calculator')
+inputs = require('./inputs')
 
-pairs = 
-	1 : 10
-	100 : 200
-	201 : 210
-	900 : 1000
+cycle = (n, length=0)->
+	length +=1
+	if n is 1
+		length
+	else if n % 2 is 0
+		cycle(n / 2, length)
+	else
+		cycle((n*3)+1, length)
 
 console.log("Start...")	
-#console.log cal(22)
 
-for min, max of pairs
-	seq = (cal(num) for num in [min..max])
-	#console.log(seq.reduce (a,b) -> Math.max a, b)
-	m = 0 #reset m
-	m = Math.max(m, num) for num in seq
-	console.log("#{min} #{max} #{m}")
+for x, y of inputs
+	q = (cycle(num) for num in [x..y]).reduce (a,b) -> Math.max a , b
+	console.log("#{x} #{y} #{q}")
 
 		
 	
