@@ -11,7 +11,7 @@ let rec cycleLength x length=
 let cal x y = 
     ([x..y] |> Seq.map (fun num -> cycleLength num 0)) |> Seq.max
 
-let printResult (first, last) =
-    printfn "%i %i %i" first last (cal first last)
+let printRange (low, high) =
+    printfn "%i %i %i" low high (cal low high)
 
-Seq.iter (printResult) inputs
+Seq.iter (printRange) inputs
