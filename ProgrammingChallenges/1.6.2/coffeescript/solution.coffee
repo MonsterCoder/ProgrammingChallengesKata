@@ -13,8 +13,11 @@ class Mfield
                       for r in [0...@rowcount]
                            line=[]
                            for c in [0...@columncount]  
-                              n= (@rows[r-1]?[c-1] ? 0)+(@rows[r-1]?[c] ? 0)+(@rows[r-1]?[c+1] ? 0)+(@rows[r]?[c-1] ? 0)+(@rows[r]?[c] ? 0)+(@rows[r]?[c+1] ? 0)+(@rows[r+1]?[c-1] ? 0)+(@rows[r+1]?[c] ? 0)+(@rows[r+1]?[c+1] ? 0)
-                              line.push  n
+                              if (@rows[r][c] == 0)
+                                  n= (@rows[r-1]?[c-1] ? 0)+(@rows[r-1]?[c] ? 0)+(@rows[r-1]?[c+1] ? 0)+(@rows[r]?[c-1] ? 0)+(@rows[r]?[c] ? 0)+(@rows[r]?[c+1] ? 0)+(@rows[r+1]?[c-1] ? 0)+(@rows[r+1]?[c] ? 0)+(@rows[r+1]?[c+1] ? 0)
+                                  line.push  n
+                              else
+                                  line.push '*'
                            console.log line
                           
                           
