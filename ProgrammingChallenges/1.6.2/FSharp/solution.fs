@@ -25,29 +25,42 @@ let (|Row|_|) (line:string) =
      else
         None
 
-let output (arr:char array) r c =
-               if arr.Length > 0 then
-                  printfn "%A" arr
+let output (field:char array) r c =
+   let buffer = Array.create 
+   for rIdx in 0..(r-1) do
+	 
+     for cIdx in 0..(c-1) do
+       let ch = field.[rIdx* c+ cIdx]
+       if ch ='*' then
+       if ch ='*' then
+           buffer.
+       printf "%A" ch
+     printfn " "
+   printfn " "
 
-let Classify line buffer (rnum:int) (cnum:int)=
+
+let readLine line field (rsize:int) (csize:int)=
    match line with
-   | End s-> output buffer rnum cnum
+   | End _-> output field rsize csize
              (Array.empty, 0, 0)
-   | FieldHead [|a;b|]-> output buffer rnum cnum
+   | FieldHead [|a;b|]-> output field rsize csize
                          let r =Int32.Parse a
                          let c = Int32.Parse b
                          (Array.empty, r,c)
-   | Row s -> ((Array.append buffer s), rnum,cnum)
+   | Row s -> ((Array.append field s), rsize, csize)
    | _  -> (Array.empty, 0, 0)
 
-let rec read (inputs:string list) (buffer:char array) rnum cnum=
+let rec readIn (inputs:string list) (buffer:char array) rsize csize=
    match inputs with
    | [] -> printfn "end"
    | head::tail ->
-                   let (b,r,c) =Classify head buffer rnum cnum
-                   read tail b r c
+                   let (b,r,c) =readLine head buffer rsize csize
+                   readIn tail b r c
                   
 printfn "Start..."
 
-let init = Array.empty
-read inputs init 0 0
+let initBuffer = Array.empty
+let initRowSize = 0
+let initColumnSize = 0
+
+readIn inputs initBuffer initRowSize initColumnSize
