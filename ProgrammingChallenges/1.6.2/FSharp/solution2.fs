@@ -51,7 +51,7 @@ let rec MineField inputs (buffer:char list) =
                        |Controls(r,c) -> output(dumpRow,buffer)
                                          printfn "Field"
                                          MineField tail []                     
-                       |Mines(mines) ->  let _buffer = output(mines@['.'],buffer)
+                       |Mines(row) ->  let _buffer = output(row@['.'],buffer)
                                          MineField tail _buffer
         | [] -> buffer
 
