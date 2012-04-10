@@ -21,7 +21,7 @@ let count = function
         |'*' -> 1
         | _ -> 0
 
-let cal = function
+let calulateSquare = function
         | ['*';b2;'*';f2] -> ['*';add (2,b2);'*';add (1,f2)]
         | ['*';b2;f1;f2] ->  let f = count b2
                              ['*';add (1,b2);add ((1 + f),f1);add (1,f2)]
@@ -34,7 +34,7 @@ let cal = function
 let rec output = function
        | (feedIn,[]) -> feedIn
        | (x10::x11::feedIn_tail, x00::x01:buffer_tail) ->  
-                             let [b1;b2;f1;f2] = cal [x00;x01;x10;x11]
+                             let [b1;b2;f1;f2] = calulateSquare [x00;x01;x10;x11]
                              printf "%A" b1
                              f1::(output(f2::feedIn_tail,b2::buffer_tail))
        | ([f],[b]) -> printfn " "
