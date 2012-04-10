@@ -21,7 +21,7 @@ let count = function
         |'*' -> 1
         | _ -> 0
 
-let rec cal = function
+let cal = function
         | ['*';b2;'*';f2] -> ['*';add (2,b2);'*';add (1,f2)]
         | ['*';b2;f1;f2] ->  let f = count b2
                              ['*';add (1,b2);add ((1 + f),f1);add (1,f2)]
